@@ -31,56 +31,109 @@ class WalletTableViewController: UITableViewController {
         
     
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.catchNotification(notification:)),
-            name: Notification.Name(rawValue:"MyNotification" + self.data.rawValue),
-            object: nil)
+//        NotificationCenter.default.addObserver(
+//            self,
+//            selector: #selector(self.catchNotification(notification:)),
+//            name: Notification.Name(rawValue:"MyNotification" + self.data.rawValue),
+//            object: nil)
+//        
+//        APICommunication.apirequest(data: EndPointTypes.Wallet, httpMethod: "GET", httpBody: nil)
         
-        APICommunication.apirequest(data: EndPointTypes.Wallet, httpMethod: "GET", httpBody: nil)
+        let requestURL: NSURL = NSURL(string: "https://gist.githubusercontent.com/Shanjeef/3562ebc5ea794a945f723de71de1c3ed/raw/25da03b403ffa860dd68a9bfc84f562262ee5ca5/walletEndpoint")!
+        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
+        let session = URLSession.shared
+        let task = session.dataTask(with: urlRequest as URLRequest) {
+            (data, response, error) -> Void in
+            
+            let httpResponse = response as! HTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            if (statusCode == 200) {
+                print("Wallet Endpoint found")
+                
+                do{
+                    
+                    let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as! [String:Any]
+                    
+                    guard let id = json["info"] as? NSDictionary else {
+                        print ("Could not find info element")
+                        return
+                    }
+                    
+                    let cards = id["cards"] as! NSArray
+                    
+                    for index in 0..<cards.count {
+                        let card = cards[index] as! NSDictionary
+                        let account = card["type"]
+                        let amount = card["amount"]
+                        let start = card["policy_start_date"]
+                        let end = card["policy_end_date"]
+                        
+                        self.Accounts.append(account! as! String)
+                        self.Amounts.append(amount! as! NSNumber)
+                        self.Start.append(start! as! String)
+                        self.End.append(end! as! String)
+                        
+                    }
+                    self.Accounts = self.convertAccount(account: self.Accounts)
+                    self.Start = self.convertDate(dates: self.Start)
+                    self.End = self.convertDate(dates: self.End)
+                    
+                    self.tableView.reloadData()
+                    
+                    
+                    
+                }catch {
+                    print("Error with Json: \(error)")
+                }
+                
+            }
+        }
+        
+        task.resume()
         
         
     }
     
-    func catchNotification(notification: Notification) -> Void {
-        print("Caught Graph notification")
-        
-        guard let jsonResponse = notification.userInfo else {
-            print("No userInfo found in notification")
-            return
-        }
-        
-        let json = APICommunication.convertDatatoDictionary(data: jsonResponse["response"] as! Data)
-        
-        //Parse json response
-        guard let id = json?["info"] as? NSDictionary else {
-            print ("Could not find info element")
-            return
-        }
-        
-        let cards = id["cards"] as! NSArray
-        
-        for index in 0..<cards.count {
-            let card = cards[index] as! NSDictionary
-            let account = card["type"]
-            let amount = card["amount"]
-            let start = card["policy_start_date"]
-            let end = card["policy_end_date"]
-            
-            Accounts.append(account! as! String)
-            Amounts.append(amount! as! NSNumber)
-            Start.append(start! as! String)
-            End.append(end! as! String)
-            
-        }
-        Accounts = convertAccount(account: Accounts)
-        Start = convertDate(dates: Start)
-        End = convertDate(dates: End)
-        
-        self.tableView.reloadData()
-
-        
-    }
+//    func catchNotification(notification: Notification) -> Void {
+//        print("Caught Graph notification")
+//        
+//        guard let jsonResponse = notification.userInfo else {
+//            print("No userInfo found in notification")
+//            return
+//        }
+//        
+//        let json = APICommunication.convertDatatoDictionary(data: jsonResponse["response"] as! Data)
+//        
+//        //Parse json response
+//        guard let id = json?["info"] as? NSDictionary else {
+//            print ("Could not find info element")
+//            return
+//        }
+//        
+//        let cards = id["cards"] as! NSArray
+//        
+//        for index in 0..<cards.count {
+//            let card = cards[index] as! NSDictionary
+//            let account = card["type"]
+//            let amount = card["amount"]
+//            let start = card["policy_start_date"]
+//            let end = card["policy_end_date"]
+//            
+//            Accounts.append(account! as! String)
+//            Amounts.append(amount! as! NSNumber)
+//            Start.append(start! as! String)
+//            End.append(end! as! String)
+//            
+//        }
+//        Accounts = convertAccount(account: Accounts)
+//        Start = convertDate(dates: Start)
+//        End = convertDate(dates: End)
+//        
+//        self.tableView.reloadData()
+//
+//        
+//    }
     
     func convertAccount(account: [String]) -> [String] {
         

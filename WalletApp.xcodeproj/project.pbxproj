@@ -14,8 +14,6 @@
 		9224C7821E8484C700F2D835 /* WalletAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9224C7811E8484C700F2D835 /* WalletAppTests.swift */; };
 		92E2A70F1E888B7100BFE087 /* WalletTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E2A70E1E888B7100BFE087 /* WalletTableViewController.swift */; };
 		92E2A7111E888BBD00BFE087 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E2A7101E888BBD00BFE087 /* WalletTableViewCell.swift */; };
-		92E2A7131E8891F700BFE087 /* ServerEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E2A7121E8891F700BFE087 /* ServerEndpoint.swift */; };
-		92E2A7151E88922E00BFE087 /* APICommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E2A7141E88922E00BFE087 /* APICommunication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +38,6 @@
 		9224C7831E8484C700F2D835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92E2A70E1E888B7100BFE087 /* WalletTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletTableViewController.swift; sourceTree = "<group>"; };
 		92E2A7101E888BBD00BFE087 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
-		92E2A7121E8891F700BFE087 /* ServerEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerEndpoint.swift; sourceTree = "<group>"; };
-		92E2A7141E88922E00BFE087 /* APICommunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICommunication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +82,6 @@
 				9224C76C1E8484C700F2D835 /* AppDelegate.swift */,
 				9224C7701E8484C700F2D835 /* Main.storyboard */,
 				92E2A70E1E888B7100BFE087 /* WalletTableViewController.swift */,
-				92E2A7121E8891F700BFE087 /* ServerEndpoint.swift */,
-				92E2A7141E88922E00BFE087 /* APICommunication.swift */,
 				92E2A7101E888BBD00BFE087 /* WalletTableViewCell.swift */,
 				9224C7731E8484C700F2D835 /* Assets.xcassets */,
 				9224C7751E8484C700F2D835 /* LaunchScreen.storyboard */,
@@ -208,8 +202,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92E2A7151E88922E00BFE087 /* APICommunication.swift in Sources */,
-				92E2A7131E8891F700BFE087 /* ServerEndpoint.swift in Sources */,
 				92E2A7111E888BBD00BFE087 /* WalletTableViewCell.swift in Sources */,
 				9224C76D1E8484C700F2D835 /* AppDelegate.swift in Sources */,
 				92E2A70F1E888B7100BFE087 /* WalletTableViewController.swift in Sources */,
