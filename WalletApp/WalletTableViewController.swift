@@ -10,6 +10,8 @@ import UIKit
 
 class WalletTableViewController: UITableViewController {
     
+//    let data = EndPointTypes.Wallet
+    
     
     
     var Accounts = [String]()
