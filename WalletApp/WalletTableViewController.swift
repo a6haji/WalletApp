@@ -59,15 +59,13 @@ class WalletTableViewController: UITableViewController {
         }
         
         let cards = id["cards"] as! NSArray
-        let first = cards[0] as! NSDictionary
-        let account = first["type"]
         
         for index in 0..<cards.count {
             let card = cards[index] as! NSDictionary
             let account = card["type"]
             let amount = card["amount"]
-            var start = card["policy_start_date"]
-            var end = card["policy_end_date"]
+            let start = card["policy_start_date"]
+            let end = card["policy_end_date"]
             
             Accounts.append(account! as! String)
             Amounts.append(amount! as! NSNumber)
