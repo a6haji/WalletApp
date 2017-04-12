@@ -63,7 +63,7 @@ class APICommunication {
             DispatchQueue.main.async {
                 
                 //Listen to this notification in your viewcontroller to get data
-                NotificationCenter.default.post(name:Notification.Name(rawValue:"MyNotification" + NotificationName),
+                NotificationCenter.default.post(name:Notification.Name(rawValue:"MyNotification" + datatype.rawValue),
                                                 object: nil,
                                                 userInfo: dictionary as? [AnyHashable : Any])
             }
